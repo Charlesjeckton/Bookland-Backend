@@ -1,0 +1,20 @@
+INFO 2025-12-16 18:07:42,877 autoreload 16772 20344 Watching for file changes with StatReloader
+INFO 2025-12-16 18:07:49,591 basehttp 16772 18656 "GET / HTTP/1.1" 200 40
+INFO 2025-12-16 18:17:31,303 autoreload 16772 20344 D:\Users\HP\Python Projects\Bookland\BooklandSchools\BooklandBackend\booklandapp\serializers.py changed, reloading.
+INFO 2025-12-16 18:17:32,665 autoreload 24804 24312 Watching for file changes with StatReloader
+INFO 2025-12-16 18:18:33,429 autoreload 24804 24312 D:\Users\HP\Python Projects\Bookland\BooklandSchools\BooklandBackend\booklandapp\serializers.py changed, reloading.
+INFO 2025-12-16 18:18:34,636 autoreload 22624 25956 Watching for file changes with StatReloader
+INFO 2025-12-16 18:37:23,180 autoreload 22624 25956 D:\Users\HP\Python Projects\Bookland\BooklandSchools\BooklandBackend\booklandapp\admin.py changed, reloading.
+INFO 2025-12-16 18:37:24,560 autoreload 2520 20316 Watching for file changes with StatReloader
+INFO 2025-12-16 18:38:12,180 autoreload 2520 20316 D:\Users\HP\Python Projects\Bookland\BooklandSchools\BooklandBackend\booklandapp\admin.py changed, reloading.
+INFO 2025-12-16 18:38:13,510 autoreload 25924 8716 Watching for file changes with StatReloader
+INFO 2025-12-16 18:41:21,796 autoreload 25924 8716 D:\Users\HP\Python Projects\Bookland\BooklandSchools\BooklandBackend\booklandapp\admin.py changed, reloading.
+INFO 2025-12-16 18:41:22,929 autoreload 19360 15304 Watching for file changes with StatReloader
+INFO 2025-12-16 18:41:42,057 autoreload 19360 15304 D:\Users\HP\Python Projects\Bookland\BooklandSchools\BooklandBackend\booklandapp\admin.py changed, reloading.
+INFO 2025-12-16 18:41:43,252 autoreload 13488 20224 Watching for file changes with StatReloader
+INFO 2025-12-16 18:42:33,533 autoreload 13488 20224 D:\Users\HP\Python Projects\Bookland\BooklandSchools\BooklandBackend\booklandapp\serializers.py changed, reloading.
+INFO 2025-12-16 18:42:34,922 autoreload 12140 14312 Watching for file changes with StatReloader
+INFO 2025-12-16 18:42:50,050 autoreload 12140 14312 D:\Users\HP\Python Projects\Bookland\BooklandSchools\BooklandBackend\booklandapp\serializers.py changed, reloading.
+INFO 2025-12-16 18:42:51,297 autoreload 9376 12772 Watching for file changes with StatReloader
+INFO 2025-12-16 18:43:21,711 autoreload 9376 12772 D:\Users\HP\Python Projects\Bookland\BooklandSchools\BooklandBackend\booklandapp\forms.py changed, reloading.
+INFO 2025-12-16 18:43:25,050 autoreload 21172 5776 Watching for file changes with StatReloader
