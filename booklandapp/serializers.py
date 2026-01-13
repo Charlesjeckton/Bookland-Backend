@@ -28,7 +28,7 @@ class TestimonialsMessageSerializer(serializers.ModelSerializer):
 class LeadershipMessageSerializer(serializers.ModelSerializer):
     class Meta:
         model = LeadershipMessage
-        fields = ["id", "salutation", "name", "designation", "message", "image"]
+        fields = ["id", "salutation", "name", "designation", "rank", "message", "image"]
 
 
 class GalleryImageSerializer(serializers.ModelSerializer):
