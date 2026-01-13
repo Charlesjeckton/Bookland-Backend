@@ -24,10 +24,10 @@ if not SECRET_KEY:
 DEBUG = os.getenv("DEBUG", "False").lower() == "true"
 
 ALLOWED_HOSTS = [
+    "bookland-backend-wueo.onrender.com",
+    ".onrender.com",
     "127.0.0.1",
     "localhost",
-    "booklandbackend.onrender.com",
-    ".onrender.com",
 ]
 
 # =====================================================
@@ -171,7 +171,7 @@ if DEBUG:
     ]
 
 CSRF_TRUSTED_ORIGINS = [
-    "https://booklandbackend.onrender.com",
+    "https://bookland-backend-wueo.onrender.com",
     "https://bookland-frontend-two.vercel.app",
     "http://localhost:8000",
     "http://127.0.0.1:8000",
