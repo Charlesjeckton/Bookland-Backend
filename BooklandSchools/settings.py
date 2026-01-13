@@ -5,9 +5,9 @@ import dj_database_url
 from dotenv import load_dotenv
 
 # =====================================================
-# LOAD ENVIRONMENT VARIABLES
+# LOAD ENVIRONMENT VARIABLES (LOCAL ONLY)
 # =====================================================
-load_dotenv()  # loads .env in project root
+load_dotenv()  # Works locally; Render uses Dashboard env vars
 
 # =====================================================
 # BASE DIRECTORY
@@ -100,7 +100,7 @@ DATABASES = {
     "default": dj_database_url.config(
         default=DATABASE_URL,
         conn_max_age=600,
-        ssl_require=not DEBUG,  # SSL only in production
+        ssl_require=not DEBUG,
     )
 }
 
@@ -113,7 +113,7 @@ USE_I18N = True
 USE_TZ = True
 
 # =====================================================
-# PASSWORDS
+# PASSWORD VALIDATION
 # =====================================================
 AUTH_PASSWORD_VALIDATORS = [
     {"NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator"},
@@ -154,9 +154,10 @@ MEDIA_URL = "/media/"
 MEDIA_ROOT = BASE_DIR / "media"
 
 # =====================================================
-# CORS / CSRF
+# CORS / CSRF (FIXED)
 # =====================================================
 CORS_ALLOW_ALL_ORIGINS = False
+
 CORS_ALLOWED_ORIGINS = [
     "https://bookland-frontend-two.vercel.app",
 ]
@@ -169,7 +170,12 @@ if DEBUG:
         "http://127.0.0.1:8000",
     ]
 
-CSRF_TRUSTED_ORIGINS = CORS_ALLOWED_ORIGINS + ["http://localhost:8000", "http://127.0.0.1:8000"]
+CSRF_TRUSTED_ORIGINS = [
+    "https://booklandbackend.onrender.com",
+    "https://bookland-frontend-two.vercel.app",
+    "http://localhost:8000",
+    "http://127.0.0.1:8000",
+]
 
 # =====================================================
 # REST FRAMEWORK
@@ -185,7 +191,9 @@ REST_FRAMEWORK = {
 }
 
 if DEBUG:
-    REST_FRAMEWORK["DEFAULT_RENDERER_CLASSES"].append("rest_framework.renderers.BrowsableAPIRenderer")
+    REST_FRAMEWORK["DEFAULT_RENDERER_CLASSES"].append(
+        "rest_framework.renderers.BrowsableAPIRenderer"
+    )
 
 # =====================================================
 # SESSION / SECURITY
@@ -195,6 +203,7 @@ SESSION_SAVE_EVERY_REQUEST = True
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 SESSION_COOKIE_HTTPONLY = True
 SESSION_COOKIE_SAMESITE = "Lax"
+
 CSRF_COOKIE_HTTPONLY = True
 CSRF_COOKIE_SAMESITE = "Lax"
 
@@ -207,12 +216,13 @@ FILE_UPLOAD_MAX_MEMORY_SIZE = 10 * 1024 * 1024
 # =====================================================
 # EMAIL
 # =====================================================
-EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend" if DEBUG else "django.core.mail.backends.smtp.EmailBackend"
+EMAIL_BACKEND = (
+    "django.core.mail.backends.console.EmailBackend"
+    if DEBUG
+    else "django.core.mail.backends.smtp.EmailBackend"
+)
 
 # =====================================================
-# RENDER SPECIFIC
+# RENDER
 # =====================================================
 RENDER_HEALTH_CHECK_URL = "/health/"
-
-if "RENDER" in os.environ:
-    MIDDLEWARE.insert(2, "whitenoise.middleware.WhiteNoiseMiddleware")
