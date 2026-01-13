@@ -48,14 +48,12 @@ class TestimonialsMessage(models.Model):
 class LeadershipMessage(models.Model):
     salutation = models.CharField(max_length=10)
     name = models.CharField(max_length=50)
-    image = models.URLField(blank=True, null=True)
+    image = models.URLField(blank=True, null=True)  # Cloudinary URL
     designation = models.CharField(max_length=50)
     message = models.TextField()
-    rank = models.PositiveIntegerField(default=999, help_text="Lower number = higher rank")
 
     def __str__(self):
         return f"{self.name} - {self.designation}"
-
 
 
 # =========================

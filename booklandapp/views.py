@@ -55,8 +55,7 @@ def api_testimonials(request):
 
 @api_view(["GET"])
 def api_leadership(request):
-    # Order by rank descending: highest rank first
-    queryset = LeadershipMessage.objects.all().order_by('-rank')
+    queryset = LeadershipMessage.objects.all()
     serializer = LeadershipMessageSerializer(queryset, many=True)
     return Response(serializer.data)
 

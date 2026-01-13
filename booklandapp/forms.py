@@ -64,7 +64,7 @@ class LeadershipMessageForm(forms.ModelForm):
 
     class Meta:
         model = LeadershipMessage
-        fields = ["salutation", "name", "designation", "rank", "message", "upload_image"]  # Added rank
+        fields = ["salutation", "name", "designation", "message", "upload_image"]
 
     def save(self, commit=True):
         instance = super().save(commit=False)

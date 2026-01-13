@@ -64,9 +64,7 @@ class TestimonialsMessageAdmin(ImagePreviewAdminMixin):
 @admin.register(LeadershipMessage)
 class LeadershipMessageAdmin(ImagePreviewAdminMixin):
     form = LeadershipMessageForm
-    list_display = ("salutation", "name", "designation", "rank", "message", "image_preview")
-    list_editable = ("rank",)  # Allows you to quickly edit ranks from the list view
-    ordering = ("rank",)  # Default ordering by rank in the admin
+    list_display = ("salutation", "name", "designation", "message", "image_preview")
 
 
 # =====================================================
