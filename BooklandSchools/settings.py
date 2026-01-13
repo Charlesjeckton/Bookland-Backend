@@ -2,9 +2,6 @@ import os
 from pathlib import Path
 import dj_database_url
 from dotenv import load_dotenv
-from decouple import config
-
-
 
 # =====================================================
 # LOAD ENVIRONMENT VARIABLES
@@ -20,12 +17,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY
 # =====================================================
 # Load secret key from .env
-SECRET_KEY = config("DJANGO_SECRET_KEY")
-
+# Load secret key from .env
+SECRET_KEY = os.getenv("DJANGO_SECRET_KEY")
+if not SECRET_KEY:
+    raise ValueError("DJANGO_SECRET_KEY environment variable is required")
 
 # Load DEBUG (default False if not set)
-DEBUG = config("DEBUG", default=False, cast=bool)
-
+DEBUG = os.getenv("DEBUG", "False").lower() == "true"
 
 ALLOWED_HOSTS = [
     "booklandbackend.onrender.com",
