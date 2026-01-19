@@ -160,14 +160,21 @@ CORS_ALLOW_ALL_ORIGINS = False
 CORS_ALLOW_CREDENTIALS = True
 
 CORS_ALLOWED_ORIGINS = [
-    "https://bookland-frontend-two.vercel.app",
+    "https://www.booklandschools.co.ke",
+    "https://booklandschools.co.ke",
     "https://bookland-backend-onku.onrender.com",
 ]
 
 CSRF_TRUSTED_ORIGINS = [
+    "https://www.booklandschools.co.ke",
+    "https://booklandschools.co.ke",
     "https://bookland-backend-onku.onrender.com",
-    "https://bookland-frontend-two.vercel.app",
+    
 ]
+
+
+CORS_ALLOW_CREDENTIALS = True
+
 
 if DEBUG:
     CORS_ALLOWED_ORIGINS += [
