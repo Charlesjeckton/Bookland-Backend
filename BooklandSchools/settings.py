@@ -23,6 +23,7 @@ if not SECRET_KEY:
 DEBUG = os.getenv("DEBUG", "False").lower() == "true"
 
 ALLOWED_HOSTS = [
+    "api.booklandschools.co.ke",
     "bookland-backend-onku.onrender.com",
     ".onrender.com",
     "localhost",
