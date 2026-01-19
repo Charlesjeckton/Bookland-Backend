@@ -1,4 +1,3 @@
-# BooklandSchools/settings.py
 import os
 from pathlib import Path
 import dj_database_url
@@ -7,7 +6,7 @@ from dotenv import load_dotenv
 # =====================================================
 # LOAD ENVIRONMENT VARIABLES (LOCAL ONLY)
 # =====================================================
-load_dotenv()  # Works locally; Render uses Dashboard env vars
+load_dotenv()
 
 # =====================================================
 # BASE DIRECTORY
@@ -26,8 +25,8 @@ DEBUG = os.getenv("DEBUG", "False").lower() == "true"
 ALLOWED_HOSTS = [
     "bookland-backend-onku.onrender.com",
     ".onrender.com",
-    "127.0.0.1",
     "localhost",
+    "127.0.0.1",
 ]
 
 # =====================================================
@@ -41,10 +40,11 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
 
-    "cloudinary_storage",
-    "cloudinary",
     "corsheaders",
     "rest_framework",
+
+    "cloudinary",
+    "cloudinary_storage",
 
     "booklandapp",
 ]
@@ -90,7 +90,7 @@ TEMPLATES = [
 ]
 
 # =====================================================
-# DATABASE
+# DATABASE (NEON)
 # =====================================================
 DATABASE_URL = os.getenv("DATABASE_URL")
 if not DATABASE_URL:
@@ -100,7 +100,7 @@ DATABASES = {
     "default": dj_database_url.config(
         default=DATABASE_URL,
         conn_max_age=600,
-        ssl_require=not DEBUG,
+        ssl_require=True,
     )
 }
 
@@ -125,7 +125,7 @@ AUTH_PASSWORD_VALIDATORS = [
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 # =====================================================
-# STATIC FILES
+# STATIC FILES (WHITENOISE)
 # =====================================================
 STATIC_URL = "/static/"
 STATIC_ROOT = BASE_DIR / "staticfiles"
@@ -134,9 +134,9 @@ STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 # =====================================================
 # MEDIA / CLOUDINARY
 # =====================================================
-CLOUDINARY_CLOUD_NAME = os.getenv("CLOUDINARY_CLOUD_NAME", "")
-CLOUDINARY_API_KEY = os.getenv("CLOUDINARY_API_KEY", "")
-CLOUDINARY_API_SECRET = os.getenv("CLOUDINARY_API_SECRET", "")
+CLOUDINARY_CLOUD_NAME = os.getenv("CLOUDINARY_CLOUD_NAME")
+CLOUDINARY_API_KEY = os.getenv("CLOUDINARY_API_KEY")
+CLOUDINARY_API_SECRET = os.getenv("CLOUDINARY_API_SECRET")
 
 if CLOUDINARY_CLOUD_NAME and CLOUDINARY_API_KEY and CLOUDINARY_API_SECRET:
     import cloudinary
@@ -144,7 +144,7 @@ if CLOUDINARY_CLOUD_NAME and CLOUDINARY_API_KEY and CLOUDINARY_API_SECRET:
         cloud_name=CLOUDINARY_CLOUD_NAME,
         api_key=CLOUDINARY_API_KEY,
         api_secret=CLOUDINARY_API_SECRET,
-        secure=True
+        secure=True,
     )
     DEFAULT_FILE_STORAGE = "cloudinary_storage.storage.MediaCloudinaryStorage"
 else:
@@ -154,11 +154,18 @@ MEDIA_URL = "/media/"
 MEDIA_ROOT = BASE_DIR / "media"
 
 # =====================================================
-# CORS / CSRF (FIXED)
+# CORS / CSRF (RENDER + VERCEL SAFE)
 # =====================================================
 CORS_ALLOW_ALL_ORIGINS = False
+CORS_ALLOW_CREDENTIALS = True
 
 CORS_ALLOWED_ORIGINS = [
+    "https://bookland-frontend-two.vercel.app",
+    "https://bookland-backend-onku.onrender.com",
+]
+
+CSRF_TRUSTED_ORIGINS = [
+    "https://bookland-backend-onku.onrender.com",
     "https://bookland-frontend-two.vercel.app",
 ]
 
@@ -169,20 +176,21 @@ if DEBUG:
         "http://localhost:8000",
         "http://127.0.0.1:8000",
     ]
-
-CSRF_TRUSTED_ORIGINS = [
-    "https://bookland-backend-onku.onrender.com",
-    "https://bookland-frontend-two.vercel.app",
-    "http://localhost:8000",
-    "http://127.0.0.1:8000",
-]
+    CSRF_TRUSTED_ORIGINS += [
+        "http://localhost:3000",
+        "http://127.0.0.1:3000",
+    ]
 
 # =====================================================
-# REST FRAMEWORK
+# DJANGO REST FRAMEWORK
 # =====================================================
 REST_FRAMEWORK = {
-    "DEFAULT_PERMISSION_CLASSES": ["rest_framework.permissions.AllowAny"],
-    "DEFAULT_RENDERER_CLASSES": ["rest_framework.renderers.JSONRenderer"],
+    "DEFAULT_PERMISSION_CLASSES": [
+        "rest_framework.permissions.AllowAny",
+    ],
+    "DEFAULT_RENDERER_CLASSES": [
+        "rest_framework.renderers.JSONRenderer",
+    ],
     "DEFAULT_PARSER_CLASSES": [
         "rest_framework.parsers.JSONParser",
         "rest_framework.parsers.FormParser",
@@ -207,6 +215,9 @@ SESSION_COOKIE_SAMESITE = "Lax"
 CSRF_COOKIE_HTTPONLY = True
 CSRF_COOKIE_SAMESITE = "Lax"
 
+# Required for Render HTTPS proxy
+SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
+
 # =====================================================
 # UPLOAD LIMITS
 # =====================================================
@@ -223,6 +234,6 @@ EMAIL_BACKEND = (
 )
 
 # =====================================================
-# RENDER
+# RENDER HEALTH CHECK
 # =====================================================
 RENDER_HEALTH_CHECK_URL = "/health/"
