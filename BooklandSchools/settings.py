@@ -161,15 +161,15 @@ CORS_ALLOW_CREDENTIALS = True
 
 CORS_ALLOWED_ORIGINS = [
     "https://www.booklandschools.co.ke",
-    "https://booklandschools.co.ke",
+    "https://api.booklandschools.co.ke",
     "https://bookland-backend-onku.onrender.com",
 ]
 
 CSRF_TRUSTED_ORIGINS = [
     "https://www.booklandschools.co.ke",
-    "https://booklandschools.co.ke",
+    "https://api.booklandschools.co.ke",
     "https://bookland-backend-onku.onrender.com",
-    
+
 ]
 
 
