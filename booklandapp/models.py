@@ -87,24 +87,17 @@ class AlumniMessage(models.Model):
 class FeeStructure(models.Model):
     LEVEL_CHOICES = [
         ("Play Group", "Play Group"),
-        ("PP1", "PP1"),
-        ("PP2", "PP2"),
-        ("Grade 1", "Grade 1"),
-        ("Grade 2", "Grade 2"),
-        ("Grade 3", "Grade 3"),
-        ("Grade 4", "Grade 4"),
-        ("Grade 5", "Grade 5"),
-        ("Grade 6", "Grade 6"),
-        ("Grade 7", "Grade 7"),
-        ("Grade 8", "Grade 8"),
-        ("Grade 9", "Grade 9"),
+        ("PP1 - PP2", "PP1 - PP2"),
+        ("Grade 1 - 3", "Grade 1 - 3"),
+        ("Grade 4 - 6", "Grade 4 - 6"),
+        ("Junior Secondary", "Junior Secondary"),
     ]
 
     level = models.CharField(max_length=50, choices=LEVEL_CHOICES, unique=True)
-    tuition_fee_term_One = models.DecimalField(max_digits=10, decimal_places=2)
-    tuition_fee_term_Two = models.DecimalField(max_digits=10, decimal_places=2)
-    tuition_fee_term_Three = models.DecimalField(max_digits=10, decimal_places=2)
-    total_tuition_fee = models.DecimalField(max_digits=10, decimal_places=2)
+    tuition_per_term = models.DecimalField(max_digits=10, decimal_places=2)
+    meals_fee = models.DecimalField(max_digits=10, decimal_places=2)
+    transport_fee = models.DecimalField(max_digits=10, decimal_places=2)
+    total_fee = models.DecimalField(max_digits=10, decimal_places=2)
 
     fee_structure_file = CloudinaryField(
         resource_type='raw',  # Important: PDF/raw type
