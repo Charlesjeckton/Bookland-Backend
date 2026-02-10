@@ -99,7 +99,7 @@ class FeaturedEventAdmin(ImagePreviewAdminMixin):
 # =====================================================
 @admin.register(FeeStructure)
 class FeeStructureAdmin(admin.ModelAdmin):
-    list_display = ("level", "tuition_fee_term1", "tuition_fee_term2", "tuition_fee_term3",
+    list_display = ("level", "tuition_fee_term_One", "tuition_fee_term_Two", "tuition_fee_term_Three",
                     "total_tuition_fee", "download_link")
     readonly_fields = ("download_link",)
     search_fields = ("level",)
@@ -107,7 +107,8 @@ class FeeStructureAdmin(admin.ModelAdmin):
 
     fieldsets = (
         ("Fee Information", {
-            "fields": ("level", "tuition_fee_term1", "tuition_fee_term2", "tuition_fee_term3", "total_tuition_fee")
+            "fields": ("level", "tuition_fee_term_One", "tuition_fee_term_Two",
+                       "tuition_fee_term_Three", "total_tuition_fee")
         }),
         ("PDF Document", {
             "fields": ("fee_structure_file", "download_link"),
