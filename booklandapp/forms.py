@@ -168,9 +168,9 @@ class FeeStructureForm(forms.ModelForm):
         model = FeeStructure
         fields = [
             "level",
-            "tuition_term_One",
-            "tuition_term_Two",
-            "tuition_term_Three",
+            "tuition_fee_term_One",
+            "tuition_fee_term_Two",
+            "tuition_fee_term_Three",
             "fee_structure_file",
         ]
 
