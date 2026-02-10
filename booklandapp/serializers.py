@@ -45,15 +45,15 @@ class FeeStructureSerializer(serializers.ModelSerializer):
         fields = [
             'id',
             'level',
-            'tuition_per_term',
-            'meals_fee',
-            'transport_fee',
-            'total_fee',
+            'tuition_fee_term1',
+            'tuition_fee_term2',
+            'tuition_fee_term3',
+            'total_tuition_fee',
             'fee_structure_file',
             'file_url',
             'created_at',
         ]
-        read_only_fields = ['total_fee', 'file_url', 'created_at']
+        read_only_fields = ['total_tuition_fee', 'file_url', 'created_at']
 
     def get_file_url(self, obj):
         return obj.file_url
@@ -147,9 +147,9 @@ class FeeStructureCreateSerializer(serializers.ModelSerializer):
         model = FeeStructure
         fields = [
             'level',
-            'tuition_per_term',
-            'meals_fee',
-            'transport_fee',
+            'tuition_fee_term1',
+            'tuition_fee_term2',
+            'tuition_fee_term3',
             'fee_structure_file'
         ]
 
