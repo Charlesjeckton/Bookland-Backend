@@ -87,10 +87,17 @@ class AlumniMessage(models.Model):
 class FeeStructure(models.Model):
     LEVEL_CHOICES = [
         ("Play Group", "Play Group"),
-        ("PP1 - PP2", "PP1 - PP2"),
-        ("Grade 1 - 3", "Grade 1 - 3"),
-        ("Grade 4 - 6", "Grade 4 - 6"),
-        ("Junior Secondary", "Junior Secondary"),
+        ("PP1", "PP1"),
+        ("PP2", "PP2"),
+        ("Grade 1", "Grade 1"),
+        ("Grade 2", "Grade 2"),
+        ("Grade 3", "Grade 3"),
+        ("Grade 4", "Grade 4"),
+        ("Grade 5", "Grade 5"),
+        ("Grade 6", "Grade 6"),
+        ("Grade 7", "Grade 7"),
+        ("Grade 8", "Grade 8"),
+        ("Grade 9", "Grade 9"),
     ]
 
     level = models.CharField(max_length=50, choices=LEVEL_CHOICES, unique=True)
