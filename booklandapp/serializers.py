@@ -147,9 +147,9 @@ class FeeStructureCreateSerializer(serializers.ModelSerializer):
         model = FeeStructure
         fields = [
             'level',
-            'tuition_per_term',
-            'meals_fee',
-            'transport_fee',
+            'tuition_term_One',
+            'tuition_term_Two',
+            'tuition_term_Three',
             'fee_structure_file'
         ]
 
