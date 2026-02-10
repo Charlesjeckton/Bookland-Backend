@@ -45,9 +45,9 @@ class FeeStructureSerializer(serializers.ModelSerializer):
         fields = [
             'id',
             'level',
-            'tuition_fee_term_One',
-            'tuition_fee_term_Two',
-            'tuition_fee_term_Three',
+            'tuition_fee_term_1',
+            'tuition_fee_term_2',
+            'tuition_fee_term_3',
             'total_tuition_fee',
             'fee_structure_file',
             'file_url',
@@ -147,9 +147,9 @@ class FeeStructureCreateSerializer(serializers.ModelSerializer):
         model = FeeStructure
         fields = [
             'level',
-            'tuition_fee_term_One',
-            'tuition_fee_term_Two',
-            'tuition_fee_term_Three',
+            'tuition_fee_term_1',
+            'tuition_fee_term_2',
+            'tuition_fee_term_3',
             'fee_structure_file'
         ]
 

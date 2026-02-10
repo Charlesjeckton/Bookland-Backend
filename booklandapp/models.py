@@ -94,9 +94,9 @@ class FeeStructure(models.Model):
     ]
 
     level = models.CharField(max_length=50, choices=LEVEL_CHOICES, unique=True)
-    tuition_fee_term_One = models.DecimalField(max_digits=10, decimal_places=2)
-    tuition_fee_term_Two = models.DecimalField(max_digits=10, decimal_places=2)
-    tuition_fee_term_Three = models.DecimalField(max_digits=10, decimal_places=2)
+    tuition_fee_term_1 = models.DecimalField(max_digits=10, decimal_places=2)
+    tuition_fee_term_2 = models.DecimalField(max_digits=10, decimal_places=2)
+    tuition_fee_term_3 = models.DecimalField(max_digits=10, decimal_places=2)
     total_tuition_fee = models.DecimalField(max_digits=10, decimal_places=2)
 
     fee_structure_file = CloudinaryField(
