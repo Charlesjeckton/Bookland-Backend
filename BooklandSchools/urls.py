@@ -27,6 +27,13 @@ def api_root(request):
 def home(request):
     return JsonResponse({"message": "Bookland Backend is live!"})
 
+# =====================================================
+# Health check endpoint (optional, can be used for monitoring)
+# =====================================================
+@api_view(["GET"])
+def health_check(request):
+    return Response({"status": "ok"})
+
 
 # =====================================================
 # URL PATTERNS
@@ -36,6 +43,8 @@ urlpatterns = [
     path("", home),  # Root URL
     path("api/", include("booklandapp.urls")),  # App API endpoints
     path("api-root/", api_root),  # Optional API test endpoint
+
+    path("health/", health_check),  # Optional health check endpoint
 ]
 
 # =====================================================
