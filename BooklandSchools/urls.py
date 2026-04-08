@@ -5,6 +5,7 @@ from django.conf.urls.static import static
 from django.http import JsonResponse
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
+from django.db import connection
 
 
 # =====================================================
@@ -27,12 +28,19 @@ def api_root(request):
 def home(request):
     return JsonResponse({"message": "Bookland Backend is live!"})
 
+
 # =====================================================
-# Health check endpoint (optional, can be used for monitoring)
+# HEALTH CHECK (RENDER + UPTIME ROBOT)
 # =====================================================
 @api_view(["GET"])
 def health_check(request):
-    return Response({"status": "ok"})
+    try:
+        with connection.cursor() as cursor:
+            cursor.execute("SELECT 1")
+        return Response({"status": "ok"})
+    except Exception as e:
+        return Response({"status": "error", "details": str(e)}, status=500)
+
 
 
 # =====================================================
