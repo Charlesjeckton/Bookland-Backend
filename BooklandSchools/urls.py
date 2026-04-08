@@ -32,7 +32,7 @@ def home(request):
 # =====================================================
 # HEALTH CHECK (RENDER + UPTIME ROBOT)
 # =====================================================
-@api_view(["GET"])
+@api_view(["GET", "HEAD"])
 def health_check(request):
     try:
         with connection.cursor() as cursor:
