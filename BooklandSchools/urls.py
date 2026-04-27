@@ -37,9 +37,10 @@ def health_check(request):
     try:
         with connection.cursor() as cursor:
             cursor.execute("SELECT 1")
-        return Response({"status": "ok"})
+        return Response({"status": "ok", "database": "ok"})
     except Exception as e:
-        return Response({"status": "error", "details": str(e)}, status=500)
+        # return Response({"status": "error", "details": str(e)}, status=500)
+        return Response({"status": "degraded", "database": "unavailable"})
 
 
 
