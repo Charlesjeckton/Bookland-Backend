@@ -93,14 +93,14 @@ TEMPLATES = [
 # =====================================================
 # DATABASE (NEON)
 # =====================================================
-DATABASE_URL = os.getenv("DATABASE_URL")
-if not DATABASE_URL:
-    raise ValueError("DATABASE_URL environment variable is required")
+# DATABASE_URL = os.getenv("DATABASE_URL")
+# if not DATABASE_URL:
+#     raise ValueError("DATABASE_URL environment variable is required")
 
 DATABASES = {
     "default": dj_database_url.config(
-        default=DATABASE_URL,
-        conn_max_age=600,
+        default=os.getenv("DATABASE_URL"),
+        conn_max_age=0,
         ssl_require=True,
     )
 }
