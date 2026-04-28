@@ -6,6 +6,10 @@ from django.http import JsonResponse
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from django.db import connection
+import logging
+
+
+logger = logging.getLogger(__name__)
 
 
 # =====================================================
@@ -39,6 +43,7 @@ def health_check(request):
             cursor.execute("SELECT 1")
         return Response({"status": "ok"})
     except Exception as e:
+        logger.exception("Health check database probe failed")
         return Response({"status": "error", "details": str(e)}, status=500)
 
 
