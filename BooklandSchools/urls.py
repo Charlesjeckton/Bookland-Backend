@@ -38,13 +38,18 @@ def home(request):
 # =====================================================
 @api_view(["GET", "HEAD"])
 def health_check(request):
+    return Response({"status": "ok", "service": "up"})
+
+
+@api_view(["GET"])
+def health_db_check(request):
     try:
         with connection.cursor() as cursor:
             cursor.execute("SELECT 1")
-        return Response({"status": "ok"})
+        return Response({"status": "ok", "database": "ok"})
     except Exception as e:
         logger.exception("Health check database probe failed")
-        return Response({"status": "error", "details": str(e)}, status=500)
+        return Response({"status": "error", "database": "down", "details": str(e)}, status=500)
 
 
 
@@ -58,6 +63,7 @@ urlpatterns = [
     path("api-root/", api_root),  # Optional API test endpoint
 
     path("health/", health_check),  # Optional health check endpoint
+    path("health/db/", health_db_check),
 ]
 
 # =====================================================
